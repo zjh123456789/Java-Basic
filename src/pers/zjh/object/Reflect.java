@@ -1,5 +1,8 @@
 package pers.zjh.object;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 /**
  * @author jinghui.zhu
  * @description 反射测试类
@@ -29,5 +32,16 @@ public class Reflect {
             e.printStackTrace();
         }
         System.out.println(aClass1);
+
+
+        Field[] declaredFields = aClass.getDeclaredFields();
+        for (Field field : declaredFields) {
+            System.out.println(field);
+        }
+
+        Method[] methods = aClass.getMethods();
+        for (Method method : methods) {
+            System.out.println(method);
+        }
     }
 }
