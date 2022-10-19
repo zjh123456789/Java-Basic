@@ -16,6 +16,12 @@ package pers.zjh.algorithm.leetcode.linked_list;
 public class LeetCode206 {
 
     public static void main(String[] args) {
+        ListNode listNode = initListNode();
+        ListNode newListNode = recursionReverseList(listNode);
+        print(newListNode);
+    }
+
+    public static ListNode initListNode() {
         ListNode listNode1 = new ListNode(1);
         ListNode listNode2 = new ListNode(2);
         ListNode listNode3 = new ListNode(3);
@@ -26,11 +32,10 @@ public class LeetCode206 {
         listNode3.next = listNode4;
         listNode2.next = listNode3;
         listNode1.next = listNode2;
-
-        ListNode newListNode = reverseList(listNode1);
-        print(newListNode);
+        return listNode1;
     }
 
+    // 第一种 遍历原链表 不断初始化node 然后一个个反向拼接
     private static ListNode reverseList(ListNode head) {
         if (null == head) {
             return null;
@@ -43,6 +48,31 @@ public class LeetCode206 {
             head = head.next;
         }
         return listNode;
+    }
+
+    // 第二种 递归
+    private static ListNode recursionReverseList(ListNode head) {
+        if (null == head || null == head.next) {
+            return head;
+        }
+        ListNode newListNode = recursionReverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newListNode;
+    }
+
+    // 第三种 在原链表上修改指针方向 不创建新的node
+    private static ListNode thirdMethod(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (null != cur) {
+            // 先把当前节点的下一个节点保存下来
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
     }
 
     private static void print(ListNode listNode) {
