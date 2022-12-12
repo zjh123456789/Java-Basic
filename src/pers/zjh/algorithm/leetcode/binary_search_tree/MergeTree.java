@@ -27,27 +27,4 @@ public class MergeTree {
         mergeTreeNode.right = mergeTreeNode(root1.right, root2.right);
         return mergeTreeNode;
     }
-
-
-    /**
-     * tree 数据结构
-     */
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 }
