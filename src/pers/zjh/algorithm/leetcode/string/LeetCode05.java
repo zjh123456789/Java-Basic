@@ -10,7 +10,7 @@ package pers.zjh.algorithm.leetcode.string;
 public class LeetCode05 {
 
     public static void main(String[] args) {
-        String s = "ac";
+        String s = "acbc";
         System.out.println("暴力破解: " + longestPalindrome(s));
         System.out.println("动态规划: " + dp(s));
     }
