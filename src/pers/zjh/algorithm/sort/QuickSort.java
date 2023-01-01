@@ -26,36 +26,39 @@ public class QuickSort {
         }
     }
 
-    /**
-     * 快速排序
-     *
-     * @param a     待排序的数组
-     * @param left  数组的左边界(例如, 从起始位置开始排序, 则left=0)
-     * @param right 数组的右边界(例如, 排序截至到数组末尾, 则right=a.length-1)
-     */
-    private static void quickSort(int[] a, int left, int right) {
-        if (left < right) {
-            int i = left, j = right, x = a[i];
-            while (i < j) {
-                // 从右边起, 找到一个比 x 小的值
-                while (i < j && a[j] >= x) {
-                    j--;
-                }
-                if (i < j) {
-                    a[i++] = a[j];
-                }
-                // 从左边起, 找到一个比 x 大或者等于的值
-                while (i < j && a[i] < x) {
-                    i++;
-                }
-                if (i < j) {
-                    a[j--] = a[i];
-                }
-            }
-            a[i] = x;
-            quickSort(a, left, i - 1);
-            quickSort(a, i + 1, right);
+    public static void quickSort(int[] nums, int startIndex, int endIndex) {
+        if (startIndex >= endIndex) {
+            return;
         }
+        int x = doublePointerSwap(nums, startIndex, endIndex);
+        quickSort(nums, startIndex, x - 1);
+        quickSort(nums, x + 1, endIndex);
+    }
+
+    public static int doublePointerSwap(int[] nums, int startIndex, int endIndex) {
+        int left = startIndex, right = endIndex;
+        int pivot = nums[startIndex];
+
+        while (left < right) {
+            // 从右往左 直到遇到一个比 pivot 小的数字
+            while (left < right && nums[right] >= pivot) {
+                right--;
+            }
+            // 填坑
+            if (left < right) {
+                nums[left++] = nums[right];
+            }
+            // 从左往右 直到遇到一个比 pivot 大的数字
+            while (left < right && nums[left] <= pivot) {
+                left++;
+            }
+            // 填坑
+            if (left < right) {
+                nums[right--] = nums[left];
+            }
+        }
+        nums[right] = pivot;
+        return right;
     }
 
 }
