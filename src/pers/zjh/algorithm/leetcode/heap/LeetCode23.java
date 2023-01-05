@@ -50,7 +50,9 @@ public class LeetCode23 {
         PriorityQueue<ListNode> priority = new PriorityQueue<>(lists.length, (a, b) -> (a.val - b.val));
         // 遍历链表数组，将每个链表的第一个元素放入最小堆中
         for (ListNode listNode : lists) {
-            priority.add(listNode);
+            if (null != listNode) {
+                priority.add(listNode);
+            }
         }
 
         while (!priority.isEmpty()) {
